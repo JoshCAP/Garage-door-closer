@@ -18,9 +18,13 @@
   modified by Stuff Gets Built
   2 May 2020
   
+  This project was demonstrated on my YouTube channel:  Stuff Gets Built
+  https://www.youtube.com/channel/UCsEh-qnOi0A9huaCKdf-f-Q/featured
+  
 */
-boolean closed ;
-unsigned long start  ;
+boolean closed;  //true if switch is closed, false if switch is open
+unsigned long start;  //initial time when switch gets closed
+
 void setup() {
   //configure pin 2 as an input and enable the internal pull-up resistor
   pinMode(2, INPUT_PULLUP);
@@ -39,12 +43,12 @@ void loop() {
     closed = false ;
     digitalWrite(3, LOW);
   } else {
-      if (closed == true){
+      if (closed == true){  //if switch has been closed, check to see if it has been 4 hours
         if (millis()-start> 14400000){   //14400000 = 4 hours
           digitalWrite(3, HIGH);
         }
        }
-       else {
+       else {  //if switch was open, but is now closed
         closed = true  ;
         start = millis() ;
        }
